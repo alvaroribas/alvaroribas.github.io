@@ -1,3 +1,6 @@
 [submodule "pelican-plugins"]
 	path = pelican-plugins
 	url = https://github.com/getpelican/pelican-plugins
+[submodule "pelican-minimal"]
+	path = pelican-minimal
+	url = https://github.com/alvaroribas/pelican-minimal
