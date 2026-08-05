@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }}</title>
+  <meta name="description" content="{{ page.description }}">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="layout">
+
+  <aside class="sidebar">
+    <a class="avatar-link" href="index.html" aria-label="Home"><img class="avatar" src="images/alvaro.png" alt="Álvaro Ribas"></a>
+    <div class="brand-block">
+      <p class="brand-name"><a href="index.html">Álvaro Ribas</a></p>
+      <p class="brand-role">Astronomer<br>Protoplanetary disks, data &amp; machine learning</p>
+    </div>
+    <nav class="nav">
+      <a href="index.html"{% if page.nav == 'about' %} class="active"{% endif %}>About</a>
+      <a href="research.html"{% if page.nav == 'research' %} class="active"{% endif %}>Research</a>
+      <a href="publications.html"{% if page.nav == 'publications' %} class="active"{% endif %}>Publications</a>
+      <a href="cv.html"{% if page.nav == 'cv' %} class="active"{% endif %}>CV</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="content">
+      {{ content }}
+    </div>
+  </main>
+
+</div>
+</body>
+</html>

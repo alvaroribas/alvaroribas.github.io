@@ -1,0 +1,349 @@
+/* =========================================================
+   Álvaro Ribas — personal site
+   Clean & light, with a dark-mode toggle.
+   ========================================================= */
+
+:root {
+  --bg:            #ffffff;
+  --bg-soft:       #f7f7f5;
+  --panel:         #fbfbfa;
+  --text:          #1b1c1e;
+  --muted:         #63666b;
+  --rule:          #e7e7e4;
+  --accent:        #2456c7;
+  --accent-soft:   #eaf0ff;
+  --accent-text:   #1d47a6;
+  --sidebar-w:     280px;
+  --measure:       58rem;
+  --radius:        14px;
+  --shadow:        0 1px 2px rgba(20,22,28,.04), 0 8px 30px rgba(20,22,28,.06);
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.68;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background .25s ease, color .25s ease;
+}
+
+/* ---------- Typography ---------- */
+h1, h2, h3, h4 {
+  font-family: "Newsreader", Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--text);
+  letter-spacing: -.01em;
+}
+h1 { font-size: 2.4rem; margin: 0 0 .3em; }
+h2 { font-size: 1.7rem; margin: 2.4rem 0 .8rem; clear: both; }
+h3 { font-size: 1.28rem; margin: 2rem 0 .5rem; font-weight: 600; }
+p  { margin: 0 0 1.1rem; }
+
+/* justified body text with hyphenation (reading prose only) */
+.lead, .content > p, .section > p {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+/* keep these ragged-left — addresses, captions, metadata read better unjustified */
+.contact-meta, .small, figcaption, .pub-meta { text-align: left; hyphens: manual; }
+
+a {
+  color: var(--accent-text);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color .15s ease, color .15s ease;
+}
+a:hover { border-bottom-color: currentColor; }
+
+strong { font-weight: 650; }
+em { font-style: italic; }
+
+hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 2.4rem 0;
+  clear: both;
+}
+
+.muted { color: var(--muted); }
+.small { font-size: .92rem; }
+
+/* ---------- Layout shell ---------- */
+.layout {
+  display: grid;
+  grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
+  min-height: 100vh;
+}
+/* grid children must be allowed to shrink below their content width,
+   otherwise long text/figures force horizontal overflow on narrow screens */
+.layout > * { min-width: 0; }
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  padding: 2.6rem 1.9rem;
+  border-right: 1px solid var(--rule);
+  background: var(--panel);
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  overflow-y: auto;
+}
+
+.avatar {
+  width: 138px;
+  height: 138px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--bg);
+  box-shadow: var(--shadow);
+  transition: box-shadow .15s ease;
+}
+.avatar-link { display: inline-block; line-height: 0; border: none; border-radius: 50%; }
+.avatar-link:hover { border: none; }
+.avatar-link:hover .avatar { box-shadow: 0 0 0 3px var(--accent-soft), var(--shadow); }
+
+.brand-name {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 1.72rem;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.15;
+}
+.brand-name a { color: var(--text); border: none; transition: color .15s ease; }
+.brand-name a:hover { color: var(--accent-text); }
+.brand-role {
+  color: var(--muted);
+  font-size: 1rem;
+  margin: .3rem 0 0;
+  line-height: 1.45;
+}
+
+.nav { display: flex; flex-direction: column; gap: .1rem; margin-top: .2rem; }
+.nav a {
+  color: var(--text);
+  border: none;
+  padding: .46rem .7rem;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+.nav a:hover { background: var(--bg-soft); }
+.nav a.active { background: var(--accent-soft); color: var(--accent-text); }
+
+/* ---------- Main ---------- */
+.main { padding: 3.4rem 3rem 5rem; }
+.content { max-width: var(--measure); }
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: .13em;
+  font-size: .74rem;
+  font-weight: 600;
+  color: var(--accent-text);
+  margin: 0 0 .6rem;
+}
+
+.lead { font-size: 1.16rem; line-height: 1.6; }
+
+/* intro row on home */
+.intro { display: flex; gap: 1.6rem; align-items: flex-start; }
+.intro .intro-photo { display: none; }
+
+/* ---------- Cards (selected work) ---------- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.4rem 0 1rem;
+}
+@media (max-width: 560px) { .cards { grid-template-columns: 1fr; } }
+.card {
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 1.15rem 1.2rem;
+  background: var(--panel);
+  display: block;
+  color: var(--text);
+  border-bottom: 1px solid var(--rule);
+  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  border-color: var(--accent);
+}
+.card .card-tag {
+  font-size: .72rem; text-transform: uppercase; letter-spacing: .1em;
+  color: var(--accent-text); font-weight: 600;
+}
+.card h3 { margin: .45rem 0 .35rem; font-size: 1.08rem; }
+.card p { margin: 0; font-size: .93rem; color: var(--muted); line-height: 1.5; }
+
+/* ---------- Research figures ---------- */
+.figure {
+  margin: 1.4rem 0;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--panel);
+}
+.figure img { width: 100%; display: block; }
+.figure figcaption {
+  padding: .7rem 1rem;
+  font-size: .86rem;
+  color: var(--muted);
+  border-top: 1px solid var(--rule);
+  line-height: 1.5;
+}
+/* float figures on wide screens */
+@media (min-width: 900px) {
+  .figure.right { float: right; width: 46%; margin: .4rem 0 1.2rem 1.8rem; }
+  .figure.left  { float: left;  width: 46%; margin: .4rem 1.8rem 1.2rem 0; }
+}
+.section { clear: both; }
+.section + .section { margin-top: 2.6rem; }
+
+/* ---------- Tags / pills ---------- */
+.tags { display: flex; flex-wrap: wrap; gap: .5rem; margin: .4rem 0 1.4rem; }
+.tag {
+  font-size: .82rem;
+  padding: .28rem .7rem;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  border: 1px solid var(--rule);
+  color: var(--muted);
+}
+
+/* ---------- Publications ---------- */
+.pub-list { list-style: none; padding: 0; margin: 1.2rem 0; }
+.pub {
+  padding: 1.05rem 0;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 3.2rem 1fr;
+  gap: 1rem;
+}
+.pub .pub-year {
+  font-family: "Newsreader", serif;
+  font-size: 1.05rem;
+  color: var(--muted);
+  padding-top: .05rem;
+}
+.pub .pub-title { font-weight: 600; display: block; margin-bottom: .2rem; }
+.pub .pub-meta { font-size: .9rem; color: var(--muted); }
+.pub .pub-meta .self { color: var(--text); font-weight: 600; }
+.badge {
+  display: inline-block;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  padding: .1rem .5rem;
+  border-radius: 6px;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  margin-left: .4rem;
+  vertical-align: middle;
+}
+
+/* ---------- CV ---------- */
+.cv-section { margin: 2.2rem 0; }
+.cv-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  padding: .55rem 0;
+  border-bottom: 1px dotted var(--rule);
+  align-items: baseline;
+}
+.cv-row .cv-where { color: var(--muted); font-size: .9rem; white-space: nowrap; }
+.cv-row .cv-what strong { font-weight: 650; }
+.cv-row .cv-sub { color: var(--muted); font-size: .92rem; }
+.cv-cols { columns: 2; column-gap: 2.4rem; }
+.cv-cols li { break-inside: avoid; }
+@media (max-width: 640px) { .cv-cols { columns: 1; } }
+
+ul.clean { padding-left: 1.1rem; }
+ul.clean li { margin: .3rem 0; }
+
+.callout {
+  border-left: 3px solid var(--accent);
+  background: var(--bg-soft);
+  padding: .9rem 1.2rem;
+  border-radius: 0 10px 10px 0;
+  margin: 1.4rem 0;
+  font-size: .96rem;
+}
+
+.download {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--accent);
+  color: #fff;
+  padding: .55rem 1rem;
+  border-radius: 9px;
+  font-weight: 550;
+  font-size: .95rem;
+  border: none;
+}
+.download:hover { border: none; filter: brightness(1.05); color:#fff; }
+.download svg { width: 16px; height: 16px; fill: currentColor; }
+
+/* row of profile / paper-list links (ADS, ORCID, Scholar) */
+.reflinks { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin: 1.1rem 0 .8rem; }
+/* matching profile-identifier links (ORCID, Google Scholar): logo + link */
+.idlinks { display: flex; flex-direction: column; align-items: flex-start; gap: .55rem; font-size: 1rem; margin: 0 0 1.5rem; }
+.idlink { display: inline-flex; align-items: center; gap: .5rem; }
+.idlink svg { width: 20px; height: 20px; flex: none; }
+.idlink a { color: var(--accent-text); }
+
+/* ---------- Contact ---------- */
+.contact-email {
+  font-size: 1.5rem;
+  font-family: "Newsreader", Georgia, serif;
+  margin: .3rem 0 .6rem;
+}
+.contact-email a { color: var(--accent-text); border-bottom: 1px solid transparent; }
+.contact-email a:hover { border-bottom-color: currentColor; }
+.contact-meta { color: var(--text); font-size: 1.05rem; line-height: 1.7; margin: 0; }
+.contact-meta a { color: var(--accent-text); }
+
+/* ---------- Mobile top bar (hidden on desktop) ---------- */
+.topbar { display: none; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar {
+    position: static; height: auto; flex-direction: row;
+    flex-wrap: wrap; align-items: center; gap: 1rem;
+    padding: 1.1rem 1.2rem;
+    border-right: none; border-bottom: 1px solid var(--rule);
+  }
+  .avatar { width: 60px; height: 60px; }
+  .sidebar .brand-block { flex: 1 1 auto; }
+  .brand-name { font-size: 1.25rem; }
+  .brand-role { display: none; }
+  .nav {
+    order: 3; flex-basis: 100%; flex-direction: row; flex-wrap: wrap;
+    gap: .3rem; margin-top: .2rem;
+  }
+  .main { padding: 2rem 1.3rem 3.5rem; }
+  h1 { font-size: 2rem; }
+  .figure.right, .figure.left { float: none; width: 100%; margin: 1.2rem 0; }
+}

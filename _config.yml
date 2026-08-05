@@ -1,0 +1,10 @@
+title: Álvaro Ribas
+markdown: kramdown
+
+# Files that should not be published
+exclude:
+  - README.md
+  - "potential images"
+  - Gemfile
+  - Gemfile.lock
+  - vendor
