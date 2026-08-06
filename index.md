@@ -15,7 +15,7 @@ My work combines large samples, observations spanning from the optical to the ra
 
 Much of it relies on radio interferometry with ALMA and the VLA, which resolves the fine structure of disks — rings, gaps, cavities, and asymmetries — that traces planets in the making. In addition, I also work with large samples and physical models, and combine them through statistics and machine learning methods (neural networks and Bayesian analysis) to characterize their properties.
 
-I've been a Research Associate at QMUL since 2025. Before that I was a Research Associate at the Institute of Astronomy of the University of Cambridge (2022–2025), an ESO/ALMA Fellow in Chile with duties at the ALMA observatory (2018–2022), and a postdoctoral researcher at Boston University (2015–2018). I completed my PhD in 2015, shared between the Centro de Astrobiología (CAB) at the European Space Astronomy Centre (ESAC) and Universidad Autónoma de Madrid.
+I've been a Research Associate at QMUL since 2025. Before that I was a Research Associate at the Institute of Astronomy of the University of Cambridge (2022–2025), an ESO/ALMA Fellow in Chile with duties at the ALMA observatory (2018–2022), and a postdoctoral researcher at Boston University (2015–2018). I completed my PhD in 2015 at the Centro de Astrobiología (CAB) at the European Space Astronomy Centre (ESAC) and Universidad Autónoma de Madrid.
 
 <div class="tags">
   <span class="tag">Protoplanetary &amp; debris disks</span>
